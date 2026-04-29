@@ -87,7 +87,6 @@ Unit tests are written for the **Service layer** using:
 - Arrange-Act-Assert pattern
 
 ### Example:
-```csharp
 mockRepo.Setup(x => x.GetAllMembers())
         .Returns(testData);
 
