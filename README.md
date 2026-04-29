@@ -113,6 +113,23 @@ dotnet run
 Open Swagger:
 https://localhost:5000/swagger
 
+
+---
+
+# 🧭 ✅ Architecture Diagram (BEST for README)
+
+## 🔷 Mermaid Diagram |  🏗️ Architecture Diagram
+
+```mermaid
+graph TD
+    A[Client] --> B[MembersController]
+    B --> C[IMemberService]
+    C --> D[MemberService]
+    D --> E[IMembers Repository]
+    E --> F[MembersRepository]
+    F --> G[In-Memory Data]
+```
+
 ## 🎤 Interview Talking Points
 - Clean separation of concerns
 - Testable architecture using DI
