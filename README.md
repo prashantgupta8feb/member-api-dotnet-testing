@@ -91,22 +91,22 @@ mockRepo.Setup(x => x.GetAllMembers())
         .Returns(testData);
 
 ## 🧠 Key Concepts Demonstrated
--Repository Pattern
--Service Layer Abstraction
--Dependency Injection (Scoped)
--Async Programming
--Unit Testing & Mocking
+- Repository Pattern
+- Service Layer Abstraction
+- Dependency Injection (Scoped)
+- Async Programming
+- Unit Testing & Mocking
 ## ⚠️ Current Limitations
--Uses in-memory data (no database)
+- Uses in-memory data (no database)
 No authentication/authorization
--No logging or validation
--No DTO layer
+- No logging or validation
+- No DTO layer
 ## 🚀 Future Enhancements
--Add EF Core + SQL Server
--Implement DTO + AutoMapper
--Add JWT Authentication
--Add Logging & Exception Middleware
--Integration Testing
+- Add EF Core + SQL Server
+- Implement DTO + AutoMapper
+- Add JWT Authentication
+- Add Logging & Exception Middleware
+- Integration Testing
 ## ▶️ How to Run
 dotnet run
 
@@ -114,10 +114,10 @@ Open Swagger:
 https://localhost:5000/swagger
 
 ## 🎤 Interview Talking Points
--Clean separation of concerns
--Testable architecture using DI
--Unit testing with mocked dependencies
--Layered API design
+- Clean separation of concerns
+- Testable architecture using DI
+- Unit testing with mocked dependencies
+- Layered API design
 
 ##👨‍💻 Author
 Prashant Gupta
