@@ -90,34 +90,36 @@ Unit tests are written for the **Service layer** using:
 ```csharp
 mockRepo.Setup(x => x.GetAllMembers())
         .Returns(testData);
-🧠 Key Concepts Demonstrated
+
+## 🧠 Key Concepts Demonstrated
 Repository Pattern
 Service Layer Abstraction
 Dependency Injection (Scoped)
 Async Programming
 Unit Testing & Mocking
-⚠️ Current Limitations
+## ⚠️ Current Limitations
 Uses in-memory data (no database)
 No authentication/authorization
 No logging or validation
 No DTO layer
-🚀 Future Enhancements
+## 🚀 Future Enhancements
 Add EF Core + SQL Server
 Implement DTO + AutoMapper
 Add JWT Authentication
 Add Logging & Exception Middleware
 Integration Testing
-▶️ How to Run
+## ▶️ How to Run
 dotnet run
 
 Open Swagger:
 
 https://localhost:5000/swagger
-🎤 Interview Talking Points
+
+## 🎤 Interview Talking Points
 Clean separation of concerns
 Testable architecture using DI
 Unit testing with mocked dependencies
 Layered API design
-👨‍💻 Author
 
+##👨‍💻 Author
 Prashant Gupta
