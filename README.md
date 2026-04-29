@@ -111,7 +111,6 @@ Integration Testing
 dotnet run
 
 Open Swagger:
-
 https://localhost:5000/swagger
 
 ## 🎤 Interview Talking Points
