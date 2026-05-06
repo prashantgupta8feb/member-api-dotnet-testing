@@ -265,3 +265,166 @@ Example:
 ✔ Unit testing with Moq completed
 
 ➡ Next: Controller testing / Integration testing / Production upgrade
+
+---
+
+# 🐳 Containerization (Podman)
+
+## 📌 Objective
+
+Containerize the ASP.NET Core Web API using Podman with a multi-stage Dockerfile.
+
+---
+
+## ✅ Concepts Learned
+
+* Difference between image and container
+* Multi-stage Docker builds
+* Runtime vs SDK images
+* Port binding (`8080:80`)
+* ENTRYPOINT usage
+* Environment variables inside containers
+* Container lifecycle debugging
+
+---
+
+## 📄 Dockerfile Used
+
+```dockerfile
+# Build Stage
+FROM mcr.microsoft.com/dotnet/sdk:10.0 AS build
+
+WORKDIR /src
+
+COPY MemberApi.csproj ./
+
+RUN dotnet restore
+
+COPY . .
+
+RUN dotnet publish MemberApi.csproj -c Release -o /app/publish
+
+# Runtime Stage
+FROM mcr.microsoft.com/dotnet/aspnet:10.0
+
+WORKDIR /app
+
+COPY --from=build /app/publish .
+
+ENV ASPNETCORE_URLS=http://+:80
+ENV ASPNETCORE_ENVIRONMENT=Development
+
+ENTRYPOINT ["dotnet", "MemberApi.dll"]
+```
+
+---
+
+## 🚀 Commands Used
+
+### Build image
+
+```bash
+podman build --no-cache -t member-api .
+```
+
+### Verify image
+
+```bash
+podman images
+```
+
+### Run container
+
+```bash
+podman run -p 8080:80 member-api
+```
+
+### View running containers
+
+```bash
+podman ps
+```
+
+### View logs
+
+```bash
+podman logs <container_id>
+```
+
+### Cleanup containers
+
+```bash
+podman rm -a
+```
+
+### Cleanup images
+
+```bash
+podman rmi -a
+```
+
+---
+
+## ⚠️ Important Learnings
+
+### Solution Publish Issue
+
+Container build failed because Docker attempted to publish `.sln` which referenced test projects.
+
+Fix:
+
+```dockerfile
+RUN dotnet publish MemberApi.csproj
+```
+
+instead of:
+
+```dockerfile
+RUN dotnet publish
+```
+
+---
+
+### Swagger in Container
+
+Swagger was unavailable because container runs in Production environment by default.
+
+Fix:
+
+```dockerfile
+ENV ASPNETCORE_ENVIRONMENT=Development
+```
+
+---
+
+### HTTPS Redirection Issue
+
+HTTPS redirection caused issues inside container environment.
+
+Temporary fix:
+
+```csharp
+// app.UseHttpsRedirection();
+```
+
+---
+
+## 🎤 Interview-Level Understanding
+
+* Multi-stage builds reduce runtime image size
+* SDK image is used for build/publish
+* ASP.NET runtime image is used for execution
+* Containers require long-running process via ENTRYPOINT
+* Images are immutable templates
+* Containers are runtime instances
+
+---
+
+## ✅ Current Status
+
+✔ API created
+✔ Service layer added
+✔ Async conversion done
+✔ Unit testing with Moq completed
+✔ Containerized using Podman
+
